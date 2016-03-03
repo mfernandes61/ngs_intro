@@ -1,0 +1,12 @@
+Welcome to the IFR Dockerised version of the Welsh Genepark's 
+Introduction to Command-line NGS Analysis course!
+The original materials belong to Wesh Genepark and the original
+materials and software can be found at
+http://www.walesgenepark.cardiff.ac.uk/bioinformatics/training/
+
+This was originally designed to be deployed onto Raspberry pi
+computers.  Our version will run on any linux machine running Docker 
+Host (or on Windows PC & Macs running Docker Toolbox (Kitematic)).
+
+There are updated links to data files and we have provided an i86 
+version of the GATK (rather than the original ARM version).
