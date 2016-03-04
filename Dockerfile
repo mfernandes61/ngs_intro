@@ -1,7 +1,7 @@
-FROM ubuntu:latest
+FROM sspreitzer/shellinabox:latest
 
 MAINTAINER Mark Fernandes <mark.fernandes@ifr.ac.uk>
-ENV DOCS=course/docs DATA=course/data WORK=course/work NGSUSER=ngsintro NGSGROUP=ngs_group NGS_UID=1000 NGSHOME=course
+ENV DOCS=SSIAB_HOME/docs DATA=SSIAB_HOME/data WORK=SSIAB_HOME/work SIAB_USER=ngsintro SIAB_GROUP=ngs_group
 
 USER root
 
@@ -13,7 +13,7 @@ RUN apt-get install -y software-properties-common && \
     add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-backports main restricted universe multiverse" && \
 	apt-get update && apt-get -y install bowtie bwa default-jre fastqc git gzip monit picard-tools poppler-utils samtools wget
 
-RUN mkdir course && mkdir $DOCS && mkdir $DATA && mkdir $WORK
+RUN mkdir SSIAB_HOME/course && mkdir $DOCS && mkdir $DATA && mkdir $WORK
 # RUN wget http://xoanon.cf.ac.uk/rpi/GenomeAnalysisTK.jar
 
 # Paper & course notes(pdf) use less to read from command-line
@@ -35,8 +35,8 @@ ADD Welcome.txt /etc/motd
 # RUN wget -O $DATA/Reads_1.1.fastq https://s3-eu-west-1.amazonaws.com/pstorage-f1000-a46686352/92198/Brca1Reads_1.1.fastq
 # RUN wget -O $DATA/Reads_1.2.fastq https://s3-eu-west-1.amazonaws.com/pstorage-f1000-a46686352/92203/Brca1Reads_1.2.fastq
 
-RUN useradd --create-home --shell /bin/bash --user-group --uid 1000 --groups sudo ngsintro && \
-    echo `echo "ngsintro\nngsintro\n" | passwd ngsintro`
+#RUN useradd --create-home --shell /bin/bash --user-group --uid 1000 --groups sudo ngsintro && \
+#    echo `echo "ngsintro\nngsintro\n" | passwd ngsintro`
 
 # RUN groupadd -r $GALAXY_USER -g $GALAXY_GID && \
 #    useradd -u $GALAXY_UID -r -g $GALAXY_USER -d $GALAXY_HOME -c "Galaxy user" $GALAXY_USER && \
@@ -44,16 +44,16 @@ RUN useradd --create-home --shell /bin/bash --user-group --uid 1000 --groups sud
 #    gpasswd -a $GALAXY_USER docker
 # ADD ./bashrc $GALAXY_HOME/.bashrc
 
-RUN chown -R ngsintro:ngsintro course
+RUN chown -R ngsintro:ngsintro $SIAB_HOME/course
 
 EXPOSE 22
 	
-USER ngsintro
+#USER ngsintro
 
 #CMD ["/usr/sbin/sshd", "-D"]
 # CMD /usr/bin/sshd && tail -F /var/log/cont.log
 # CMD ["/usr/local/bin/monit","-D"]
-CMD /bin/bash
+#CMD /bin/bash
 
 
 
