@@ -6,20 +6,20 @@ ENV SIAB_VERSION=2.19 \
   SIAB_USERCSS="Normal:+/etc/shellinabox/options-enabled/00+Black-on-White.css,Reverse:-/etc/shellinabox/options-enabled/00_White-On-Black.css;Colors:+/etc/shellinabox/options-enabled/01+Color-Terminal.css,Monochrome:-/etc/shellinabox/options-enabled/01_Monochrome.css" \
   SIAB_PORT=4200 \
   SIAB_ADDUSER=true \
-  SIAB_USER=guest \
+  SIAB_USER=ngsintro \
   SIAB_USERID=1000 \
-  SIAB_GROUP=guest \
+  SIAB_GROUP=ngsintro \
   SIAB_GROUPID=1000 \
-  SIAB_PASSWORD=putsafepasswordhere \
+  SIAB_PASSWORD=ngsintro \
   SIAB_SHELL=/bin/bash \
-  SIAB_HOME=/home/guest \
+  SIAB_HOME=/course \
   SIAB_SUDO=false \
   SIAB_SSL=true \
   SIAB_SERVICE=/:LOGIN \
   SIAB_PKGS=none \
   SIAB_SCRIPT=none
 
-ENV DOCS=$SIAB_HOME/docs DATA=$SIAB_HOME/data WORK=$SIAB_HOME/work SIAB_USER=ngsintro SIAB_GROUP=ngs_group
+ENV DOCS=$SIAB_HOME/docs DATA=$SIAB_HOME/data WORK=$SIAB_HOME/work 
 
 USER root
 
@@ -40,7 +40,7 @@ RUN apt-get install -y software-properties-common && \
     /etc/shellinabox/options-enabled/01+Color-Terminal.css
 
 
-RUN mkdir $SIAB_HOME/course && mkdir $DOCS && mkdir $DATA && mkdir $WORK
+RUN mkdir $SIAB_HOME && mkdir $DOCS && mkdir $DATA && mkdir $WORK
 # RUN wget http://xoanon.cf.ac.uk/rpi/GenomeAnalysisTK.jar
 
 # Paper & course notes(pdf) use less to read from command-line
@@ -48,7 +48,7 @@ RUN mkdir $SIAB_HOME/course && mkdir $DOCS && mkdir $DATA && mkdir $WORK
 # RUN wget -O NGS_tutorial.pdf http://www.walesgenepark.cardiff.ac.uk/wp-content/uploads/2013/04/1.1-Introductory-NGS.pdf
 ADD Docs\* $DOCS
 ADD Data\* $DATA
-ADD GenomeAnalysisTK.jar course
+ADD GenomeAnalysisTK.jar $SIAB_HOME
 ADD Welcome.txt /etc/motd
 
 # Description of reads data
