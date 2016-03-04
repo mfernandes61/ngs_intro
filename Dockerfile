@@ -80,8 +80,9 @@ EXPOSE 4200
 VOLUME /etc/shellinabox /var/log/supervisor /home
 
 ADD entrypoint.sh /usr/local/sbin/
+RUN chmod +x /usr/local/sbin/entrypoint.sh
 
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT ["/usr/local/sbin/entrypoint.sh"]
 CMD ["shellinabox"]
 
 
