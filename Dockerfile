@@ -62,10 +62,10 @@ ADD Welcome.txt /etc/motd
 # RUN wget -O $DATA/Reads_1.1.fastq https://s3-eu-west-1.amazonaws.com/pstorage-f1000-a46686352/92198/Brca1Reads_1.1.fastq
 # RUN wget -O $DATA/Reads_1.2.fastq https://s3-eu-west-1.amazonaws.com/pstorage-f1000-a46686352/92203/Brca1Reads_1.2.fastq
 
-RUN useradd --create-home --shell /bin/bash --user-group --uid 1000 --groups sudo $SIAB_USER && \
-    echo `echo $SIAB_USER"\n"$SIAB_USER"\n" | passwd $SIAB_PASSWORD`
+#RUN useradd --create-home --shell /bin/bash --user-group --uid 1000 --groups sudo $SIAB_USER && \
+#    echo `echo $SIAB_USER"\n"$SIAB_USER"\n" | passwd $SIAB_PASSWORD`
 
-RUN chown -R $SIAB_USER:$SIAB_GROUP $SIAB_HOME
+#RUN chown -R $SIAB_USER:$SIAB_GROUP $SIAB_HOME
 
 EXPOSE 22
 EXPOSE 4200
@@ -79,7 +79,7 @@ EXPOSE 4200
 
 VOLUME /etc/shellinabox /var/log/supervisor /home
 
-ADD assets/entrypoint.sh /usr/local/sbin/
+ADD entrypoint.sh /usr/local/sbin/
 
 ENTRYPOINT ["entrypoint.sh"]
 CMD ["shellinabox"]
