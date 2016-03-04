@@ -62,14 +62,8 @@ ADD Welcome.txt /etc/motd
 # RUN wget -O $DATA/Reads_1.1.fastq https://s3-eu-west-1.amazonaws.com/pstorage-f1000-a46686352/92198/Brca1Reads_1.1.fastq
 # RUN wget -O $DATA/Reads_1.2.fastq https://s3-eu-west-1.amazonaws.com/pstorage-f1000-a46686352/92203/Brca1Reads_1.2.fastq
 
-#RUN useradd --create-home --shell /bin/bash --user-group --uid 1000 --groups sudo ngsintro && \
-#    echo `echo "ngsintro\nngsintro\n" | passwd ngsintro`
-
-# RUN groupadd -r $GALAXY_USER -g $GALAXY_GID && \
-#    useradd -u $GALAXY_UID -r -g $GALAXY_USER -d $GALAXY_HOME -c "Galaxy user" $GALAXY_USER && \
-#    mkdir $EXPORT_DIR $GALAXY_HOME && chown -R $GALAXY_USER:$GALAXY_USER $GALAXY_HOME $EXPORT_DIR && \
-#    gpasswd -a $GALAXY_USER docker
-# ADD ./bashrc $GALAXY_HOME/.bashrc
+RUN useradd --create-home --shell /bin/bash --user-group --uid 1000 --groups sudo $SIAB_USER && \
+    echo `echo $SIAB_USER"\n"$SIAB_USER"\n" | passwd $SIAB_PASSWORD`
 
 RUN chown -R $SIAB_USER:$SIAB_GROUP $SIAB_HOME
 
