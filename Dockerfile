@@ -40,7 +40,7 @@ RUN apt-get install -y software-properties-common && \
     /etc/shellinabox/options-enabled/01+Color-Terminal.css
 
 
-RUN mkdir SSIAB_HOME/course && mkdir $DOCS && mkdir $DATA && mkdir $WORK
+RUN mkdir $SIAB_HOME/course && mkdir $DOCS && mkdir $DATA && mkdir $WORK
 # RUN wget http://xoanon.cf.ac.uk/rpi/GenomeAnalysisTK.jar
 
 # Paper & course notes(pdf) use less to read from command-line
