@@ -1,6 +1,24 @@
 FROM sspreitzer/shellinabox:latest
 
 MAINTAINER Mark Fernandes <mark.fernandes@ifr.ac.uk>
+
+ENV SIAB_VERSION=2.19 \
+  SIAB_USERCSS="Normal:+/etc/shellinabox/options-enabled/00+Black-on-White.css,Reverse:-/etc/shellinabox/options-enabled/00_White-On-Black.css;Colors:+/etc/shellinabox/options-enabled/01+Color-Terminal.css,Monochrome:-/etc/shellinabox/options-enabled/01_Monochrome.css" \
+  SIAB_PORT=4200 \
+  SIAB_ADDUSER=true \
+  SIAB_USER=guest \
+  SIAB_USERID=1000 \
+  SIAB_GROUP=guest \
+  SIAB_GROUPID=1000 \
+  SIAB_PASSWORD=putsafepasswordhere \
+  SIAB_SHELL=/bin/bash \
+  SIAB_HOME=/home/guest \
+  SIAB_SUDO=false \
+  SIAB_SSL=true \
+  SIAB_SERVICE=/:LOGIN \
+  SIAB_PKGS=none \
+  SIAB_SCRIPT=none
+
 ENV DOCS=SSIAB_HOME/docs DATA=SSIAB_HOME/data WORK=SSIAB_HOME/work SIAB_USER=ngsintro SIAB_GROUP=ngs_group
 
 USER root
@@ -11,7 +29,16 @@ RUN apt-get install -y software-properties-common && \
     add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise main restricted universe multiverse" && \
     add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-updates main restricted universe multiverse" && \
     add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-backports main restricted universe multiverse" && \
-	apt-get update && apt-get -y install bowtie bwa default-jre fastqc git gzip monit picard-tools poppler-utils samtools wget
+    apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git gzip monit openssh-client openssl picard-tools \
+    poppler-utils samtools shellinabox wget && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+  ln -sf '/etc/shellinabox/options-enabled/00+Black on White.css' \
+    /etc/shellinabox/options-enabled/00+Black-on-White.css && \
+  ln -sf '/etc/shellinabox/options-enabled/00_White On Black.css' \
+    /etc/shellinabox/options-enabled/00_White-On-Black.css && \
+  ln -sf '/etc/shellinabox/options-enabled/01+Color Terminal.css' \
+    /etc/shellinabox/options-enabled/01+Color-Terminal.css
+
 
 RUN mkdir SSIAB_HOME/course && mkdir $DOCS && mkdir $DATA && mkdir $WORK
 # RUN wget http://xoanon.cf.ac.uk/rpi/GenomeAnalysisTK.jar
@@ -47,6 +74,7 @@ ADD Welcome.txt /etc/motd
 RUN chown -R ngsintro:ngsintro $SIAB_HOME/course
 
 EXPOSE 22
+EXPOSE 4200
 	
 #USER ngsintro
 
@@ -55,6 +83,12 @@ EXPOSE 22
 # CMD ["/usr/local/bin/monit","-D"]
 #CMD /bin/bash
 
+VOLUME /etc/shellinabox /var/log/supervisor /home
+
+ADD assets/entrypoint.sh /usr/local/sbin/
+
+ENTRYPOINT ["entrypoint.sh"]
+CMD ["shellinabox"]
 
 
 
