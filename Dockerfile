@@ -71,7 +71,7 @@ ADD Welcome.txt /etc/motd
 #    gpasswd -a $GALAXY_USER docker
 # ADD ./bashrc $GALAXY_HOME/.bashrc
 
-RUN chown -R ngsintro:ngsintro $SIAB_HOME/course
+RUN chown -R $SIAB_USER:$SIAB_GROUP $SIAB_HOME
 
 EXPOSE 22
 EXPOSE 4200
