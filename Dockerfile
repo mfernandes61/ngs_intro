@@ -1,4 +1,4 @@
-FROM sspreitzer/shellinabox:latest
+FROM ubuntu:latest
 
 MAINTAINER Mark Fernandes <mark.fernandes@ifr.ac.uk>
 
