@@ -1,4 +1,4 @@
-FROM ubuntu:xenial
+FROM ubuntu
 
 MAINTAINER Mark Fernandes <mark.fernandes@ifr.ac.uk>
 
@@ -23,6 +23,8 @@ ENV DOCS=$SIAB_HOME/docs DATA=$SIAB_HOME/data WORK=$SIAB_HOME/work
 
 USER root
 
+# enable the universe
+RUN sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
 # enable the multiverse
 RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list
 # enable the backports
