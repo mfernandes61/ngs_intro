@@ -29,8 +29,8 @@ RUN apt-get install -y software-properties-common && \
     add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise main restricted universe multiverse" && \
     add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-updates main restricted universe multiverse" && \
     add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-backports main restricted universe multiverse" && \
-    apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git gzip monit openssh-client openssl picard-tools \
-    poppler-utils samtools shellinabox wget && \
+    apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git gzip monit openssh-client openssl openssh-client \
+    picard-toolspoppler-utils samtools shellinabox=$(SIAB_VERSION) sudo wget && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
   ln -sf '/etc/shellinabox/options-enabled/00+Black on White.css' \
     /etc/shellinabox/options-enabled/00+Black-on-White.css && \
