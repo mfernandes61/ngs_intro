@@ -58,6 +58,8 @@ ADD Docs\* $DOCS
 ADD Data\* $DATA
 ADD GenomeAnalysisTK.jar $SIAB_HOME
 ADD Welcome.txt /etc/motd
+ADD entrypoint.sh /usr/local/sbin/entrypoint.sh
+RUN chmod +x /usr/local/sbin/entrypoint.sh
 
 # Description of reads data
 # https://figshare.com/collections/Simulated_Illumina_BRCA1_reads_in_FASTQ_format/1641980
@@ -87,11 +89,8 @@ EXPOSE 4200
 
 VOLUME /etc/shellinabox /var/log/supervisor /home
 
-ADD entrypoint.sh /usr/local/sbin/entrypoint.sh
-RUN chmod +x /usr/local/sbin/entrypoint.sh
+ENTRYPOINT ["/usr/local/sbin/entrypoint.sh"]
+CMD ["shellinabox"]
 
-#ENTRYPOINT ["entrypoint.sh"]
-#CMD ["shellinabox"]
-
-ENTRYPOINT ["./usr/local/sbin/entrypoint.sh"]
-CMD ["service shellinaboxd start"]
+#ENTRYPOINT ["./usr/local/sbin/entrypoint.sh"]
+#CMD ["service shellinaboxd start"]
