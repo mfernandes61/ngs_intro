@@ -92,6 +92,3 @@ RUN chmod +x /usr/local/sbin/entrypoint.sh
 
 ENTRYPOINT ["entrypoint.sh"]
 CMD ["shellinabox"]
-
-
-
