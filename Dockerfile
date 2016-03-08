@@ -94,4 +94,4 @@ RUN chmod +x /usr/local/sbin/entrypoint.sh
 #CMD ["shellinabox"]
 
 ENTRYPOINT ["./usr/local/sbin/entrypoint.sh"]
-CMD ["/usr/local/sbin/entrypoint.sh"]
+CMD ["service shellinaboxd start"]
