@@ -90,7 +90,7 @@ EXPOSE 4200
 VOLUME /etc/shellinabox /var/log/supervisor /home
 
 ENTRYPOINT ["/usr/local/sbin/entrypoint.sh"]
-CMD ["shellinabox"]
+#CMD ["shellinabox"]
 
 #ENTRYPOINT ["./usr/local/sbin/entrypoint.sh"]
-#CMD ["service shellinaboxd start"]
+CMD ["/bin/bash"]
