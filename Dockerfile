@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM ubuntu:xenial
 
 MAINTAINER Mark Fernandes <mark.fernandes@ifr.ac.uk>
 
@@ -25,10 +25,10 @@ USER root
 
 # need fastqc, samtools bwa bowtie picard-tools GATK jre wget git
 RUN apt-get install -y software-properties-common && \
-    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise universe" && \
-    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise main restricted universe multiverse" && \
-    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-updates main restricted universe multiverse" && \
-    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-backports main restricted universe multiverse" && \
+#    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise universe" && \
+#    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise main restricted universe multiverse" && \
+#    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-updates main restricted universe multiverse" && \
+#    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-backports main restricted universe multiverse" && \
     apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git gzip monit openssh-client openssl \
     picard-toolspoppler-utils samtools shellinabox wget
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
