@@ -90,5 +90,8 @@ VOLUME /etc/shellinabox /var/log/supervisor /home
 ADD entrypoint.sh /usr/local/sbin/entrypoint.sh
 RUN chmod +x /usr/local/sbin/entrypoint.sh
 
-ENTRYPOINT ["entrypoint.sh"]
-CMD ["shellinabox"]
+#ENTRYPOINT ["entrypoint.sh"]
+#CMD ["shellinabox"]
+
+ENTRYPOINT ["./usr/local/sbin/entrypoint.sh"]
+CMD ["/usr/local/sbin/entrypoint.sh"]
