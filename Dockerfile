@@ -23,6 +23,11 @@ ENV DOCS=$SIAB_HOME/docs DATA=$SIAB_HOME/data WORK=$SIAB_HOME/work
 
 USER root
 
+# enable the multiverse
+RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list
+# enable the backports
+RUN sed -i 's/^#\s*\(deb.*backports\)$/\1/g' /etc/apt/sources.list
+
 # need fastqc, samtools bwa bowtie picard-tools GATK jre wget git
 RUN apt-get install -y software-properties-common && \
 #    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise universe" && \
