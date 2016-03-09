@@ -88,7 +88,7 @@ EXPOSE 4200
 #CMD /bin/bash
 
 VOLUME /etc/shellinabox /var/log/supervisor /home
-ENTRYPOINT ["/usr/local/sbin/entrypoint.sh"]
+# ENTRYPOINT ["/usr/local/sbin/entrypoint.sh"]
 #CMD ["shellinabox"]
 
 #ENTRYPOINT ["./usr/local/sbin/entrypoint.sh"]
