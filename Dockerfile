@@ -37,7 +37,7 @@ RUN apt-get install -y software-properties-common # && \
     add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-updates main restricted universe multiverse" && \
     add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-backports main restricted universe multiverse" && \
 RUN    apt-get -y install bowtie bwa curl default-jre fastqc git gzip monit openssh-client openssl \
-    picard-toolspoppler-utils samtools shellinabox wget
+    picard-toolspoppler-utils samtools shellinabox sudo wget
 RUN  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 #&& \
 #  ln -sf '/etc/shellinabox/options-enabled/00+Black on White.css' \
@@ -88,9 +88,8 @@ EXPOSE 4200
 #CMD /bin/bash
 
 VOLUME /etc/shellinabox /var/log/supervisor /home
-
-#ENTRYPOINT ["/usr/local/sbin/entrypoint.sh"]
-#CMD ["shellinabox"]
+ENTRYPOINT ["/usr/local/sbin/entrypoint.sh"]
+CMD ["shellinabox"]
 
 #ENTRYPOINT ["./usr/local/sbin/entrypoint.sh"]
-CMD ["/bin/bash"]
+#CMD ["/bin/bash"]
