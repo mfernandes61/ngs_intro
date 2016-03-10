@@ -36,7 +36,7 @@ RUN apt-get install -y software-properties-common # && \
     add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise main restricted universe multiverse" && \
     add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-updates main restricted universe multiverse" && \
     add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu precise-backports main restricted universe multiverse" && \
-RUN    apt-get -y install bowtie bwa curl default-jre fastqc git gzip monit openssh-client openssl \
+RUN   apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git gzip monit openssh-client openssl \
     picard-tools poppler-utils samtools shellinabox sudo wget
 RUN  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 #&& \
