@@ -15,7 +15,7 @@ ENV DOCS=$SIAB_HOME/docs DATA=$SIAB_HOME/data WORK=$SIAB_HOME/work
 USER root
 
 # need fastqc, samtools bwa bowtie picard-tools GATK jre wget git
-RUN   apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git gzip monit \
+RUN apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git gzip monit \
     picard-tools poppler-utils samtools sudo wget
 RUN  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
@@ -28,8 +28,6 @@ ADD Docs\* $DOCS
 ADD Data\* $DATA
 ADD GenomeAnalysisTK.jar $SIAB_HOME
 ADD Welcome.txt /etc/motd
-ADD entrypoint.sh /usr/local/sbin/entrypoint.sh
-RUN chmod +x /usr/local/sbin/entrypoint.sh
 
 # Description of reads data
 # https://figshare.com/collections/Simulated_Illumina_BRCA1_reads_in_FASTQ_format/1641980
