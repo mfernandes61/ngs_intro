@@ -13,7 +13,6 @@ ENV SIAB_VERSION=2.19 \
 ENV DOCS=$SIAB_HOME/docs DATA=$SIAB_HOME/data WORK=$SIAB_HOME/work 
 
 USER root
-
 # need fastqc, samtools bwa bowtie picard-tools GATK jre wget git
 RUN apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git gzip monit \
     picard-tools poppler-utils samtools sudo wget
