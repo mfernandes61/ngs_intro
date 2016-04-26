@@ -3,53 +3,23 @@ FROM ubuntu
 MAINTAINER Mark Fernandes <mark.fernandes@ifr.ac.uk>
 
 ENV SIAB_VERSION=2.19 \
-#  SIAB_USERCSS="Normal:+/etc/shellinabox/options-enabled/00+Black-on-White.css,Reverse:-/etc/shellinabox/options-enabled/00_White-On-Black.css;Colors:+/etc/shellinabox/options-enabled/01+Color-Terminal.css,Monochrome:-/etc/shellinabox/options-enabled/01_Monochrome.css" \
-  SIAB_PORT=4200 \
   SIAB_ADDUSER=true \
   SIAB_USER=ngsintro \
-  SIAB_USERID=1000 \
   SIAB_GROUP=ngsintro \
-  SIAB_GROUPID=1000 \
   SIAB_PASSWORD=ngsintro \
-  SIAB_SHELL=/bin/bash \
   SIAB_HOME=course \
-  SIAB_SUDO=true \
-  SIAB_SSL=true \
-  SIAB_SERVICE=/:LOGIN \
-  SIAB_PKGS=none \
-  SIAB_SCRIPT=none
+#  SIAB_SUDO=true \
 
 ENV DOCS=$SIAB_HOME/docs DATA=$SIAB_HOME/data WORK=$SIAB_HOME/work 
 
 USER root
 
-# enable the universe
-# RUN sed -i 's/^#\s*\(deb.*universe\)$/\1/g' /etc/apt/sources.list
-# enable the multiverse
-#RUN sed -i 's/^#\s*\(deb.*multiverse\)$/\1/g' /etc/apt/sources.list
-# enable the backports
-# RUN sed -i 's/^#\s*\(deb.*backports\)$/\1/g' /etc/apt/sources.list
-
 # need fastqc, samtools bwa bowtie picard-tools GATK jre wget git
-RUN apt-get install -y software-properties-common # && \
-    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu trusty universe" && \
-    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu trusty main restricted universe multiverse" && \
-    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu trusty-updates main restricted universe multiverse" && \
-    add-apt-repository -y "deb http://archive.ubuntu.com/ubuntu trusty-backports main restricted universe multiverse" && \
-RUN   apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git gzip monit openssh-client openssl \
-    picard-tools poppler-utils samtools shellinabox sudo wget
+RUN   apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git gzip monit \
+    picard-tools poppler-utils samtools sudo wget
 RUN  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
-#&& \
-#  ln -sf '/etc/shellinabox/options-enabled/00+Black on White.css' \
-#    /etc/shellinabox/options-enabled/00+Black-on-White.css && \
-#  ln -sf '/etc/shellinabox/options-enabled/00_White On Black.css' \
-#    /etc/shellinabox/options-enabled/00_White-On-Black.css && \
-#  ln -sf '/etc/shellinabox/options-enabled/01+Color Terminal.css' \
-#    /etc/shellinabox/options-enabled/01+Color-Terminal.css
-
 
 RUN mkdir $SIAB_HOME && mkdir $DOCS && mkdir $DATA && mkdir $WORK
-# RUN wget http://xoanon.cf.ac.uk/rpi/GenomeAnalysisTK.jar
 
 # Paper & course notes(pdf) use less to read from command-line
 # RUN wget -O paper.pdf $DOCS http://f1000research.com/articles/1-2/v2/pdf
@@ -82,14 +52,5 @@ EXPOSE 4200
 	
 #USER ngsintro
 
-#CMD ["/usr/sbin/sshd", "-D"]
-# CMD /usr/bin/sshd && tail -F /var/log/cont.log
-# CMD ["/usr/local/bin/monit","-D"]
-#CMD /bin/bash
-
-VOLUME /etc/shellinabox /var/log/supervisor /home
-# ENTRYPOINT ["/usr/local/sbin/entrypoint.sh"]
-#CMD ["shellinabox"]
-
-#ENTRYPOINT ["./usr/local/sbin/entrypoint.sh"]
+ENTRYPOINT ["./scripts/launchsiab.sh"]
 CMD ["/bin/bash"]
