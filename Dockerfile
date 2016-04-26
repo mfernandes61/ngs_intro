@@ -1,4 +1,4 @@
-FROM ubuntu
+FROM foodresearch/ngs_intro
 
 MAINTAINER Mark Fernandes <mark.fernandes@ifr.ac.uk>
 
