@@ -1,4 +1,4 @@
-FROM foodresearch/ngs_intro
+FROM foodresearch/bppc
 
 MAINTAINER Mark Fernandes <mark.fernandes@ifr.ac.uk>
 
