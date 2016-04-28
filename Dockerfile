@@ -2,17 +2,8 @@ FROM foodresearch/bppc
 
 MAINTAINER Mark Fernandes <mark.fernandes@ifr.ac.uk>
 
-#ENV SIAB_VERSION=2.19 \
-#  SIAB_ADDUSER=true \
-#  SIAB_USER=ngsintro \
-#  SIAB_GROUP=ngsintro \
-#  SIAB_PASSWORD=ngsintro \
-#  SIAB_HOME=course \
-#  SIAB_SUDO=true \
-
-RUN SIAB_VERSION=2.19 && SIAB_ADDUSER=true && \
-	SIAB_USER=ngsintro && SIAB_GROUP=ngsintro && \
-	SIAB_PASSWORD=ngsintro && SIAB_HOME=course && SIAB_SUDO=true 
+ADD reconfig.sh \scripts
+RUN \scripts\reconfig.sh
 ENV DOCS=$SIAB_HOME/docs DATA=$SIAB_HOME/data WORK=$SIAB_HOME/work 
 
 USER root
