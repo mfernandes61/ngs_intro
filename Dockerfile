@@ -3,7 +3,7 @@ FROM foodresearch/bppc
 MAINTAINER Mark Fernandes <mark.fernandes@ifr.ac.uk>
 
 ADD reconfig.sh \scripts
-RUN \scripts\reconfig.sh
+RUN /scripts/reconfig.sh
 ENV DOCS=$SIAB_HOME/docs DATA=$SIAB_HOME/data WORK=$SIAB_HOME/work 
 
 USER root
