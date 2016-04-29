@@ -13,7 +13,8 @@ RUN apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git 
     picard-tools poppler-utils samtools sudo wget
 RUN  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
-RUN  /bin/bash -c mkdir $DOCS &&/bin/bash -c  mkdir $DATA && /bin/bash -c mkdir $WORK
+# RUN  /bin/bash -c mkdir $DOCS &&/bin/bash -c  mkdir $DATA && /bin/bash -c mkdir $WORK
+RUN  mkdir $DOCS && mkdir $DATA && mkdir $WORK
 
 # Paper & course notes(pdf) use less to read from command-line
 # RUN wget -O paper.pdf $DOCS http://f1000research.com/articles/1-2/v2/pdf
