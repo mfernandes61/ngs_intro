@@ -1,8 +1,10 @@
 FROM foodresearch/bppc
 
 MAINTAINER Mark Fernandes <mark.fernandes@ifr.ac.uk>
-
-  
+ENV   SIAB_USER=ngsintro \
+  SIAB_GROUP=guest \
+  SIAB_PASSWORD=ngsintro \
+  SIAB_HOME=/home/$SIAB_USER 
 #ADD reconfig.sh /scripts/reconfig.sh
 #RUN chmod +x /scripts/reconfig.sh 
 #RUN /bin/bash -c /scripts/reconfig.sh
@@ -14,7 +16,7 @@ RUN apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git 
     picard-tools poppler-utils samtools sudo wget
 RUN  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
-# RUN  /bin/bash -c mkdir $DOCS &&/bin/bash -c  mkdir $DATA && /bin/bash -c mkdir $WORK
+RUN mkdir $DOCS && mkdir $DATA &&  mkdir $WORK
 #RUN  mkdir $DOCS && mkdir $DATA && mkdir $WORK
 
 # Paper & course notes(pdf) use less to read from command-line
