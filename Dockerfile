@@ -42,6 +42,11 @@ ADD Data\* $DATA
 ADD GenomeAnalysisTK.jar $SIAB_HOME
 ADD Welcome.txt /etc/motd
 
+RUN mkdir /scripts
+ADD entrypoint.sh /scripts/entrypoint.sh
+ADD launchsiab.sh /scripts/launchsiab.sh
+#RUN chmod +x /usr/local/sbin/entrypoint.sh
+RUN chmod +x /scripts/entrypoint.sh && chmod +x /scripts/launchsiab.sh
 # Description of reads data
 # https://figshare.com/collections/Simulated_Illumina_BRCA1_reads_in_FASTQ_format/1641980
 # obtain reads that we will be using for analysis exercises
