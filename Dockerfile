@@ -42,7 +42,6 @@ ADD Data\* $DATA
 ADD GenomeAnalysisTK.jar $SIAB_HOME
 ADD Welcome.txt /etc/motd
 
-RUN mkdir /scripts
 ADD entrypoint.sh /scripts/entrypoint.sh
 ADD launchsiab.sh /scripts/launchsiab.sh
 #RUN chmod +x /usr/local/sbin/entrypoint.sh
