@@ -67,5 +67,5 @@ EXPOSE 4200
 	
 #USER ngsintro
 
-ENTRYPOINT ["./scripts/launchsiab.sh"]
+ENTRYPOINT ["/scripts/launchsiab.sh"]
 CMD ["/bin/bash"]
