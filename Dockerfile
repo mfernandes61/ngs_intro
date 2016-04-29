@@ -1,7 +1,25 @@
 FROM foodresearch/bppc
 
 MAINTAINER Mark Fernandes <mark.fernandes@ifr.ac.uk>
-
+ENV SIAB_VERSION=2.19 \
+  SIAB_USERCSS="" \
+#  SIAB_USERCSS="Normal:+/etc/shellinabox/options-enabled/00+Black-on-White.css,Reverse:-/etc/shellinabox/options-enabled/00_White-On-Black.css;Colors:+/etc/shellinabox/options-enabled/01+Color-Terminal.css,Monochrome:-/etc/shellinabox/options-enabled/01_Monochrome.css" \
+  SIAB_PORT=4200 \
+  SIAB_ADDUSER=true \
+  SIAB_USER=guest \
+  SIAB_USERID=1000 \
+  SIAB_GROUP=guest \
+  SIAB_GROUPID=1000 \
+  SIAB_PASSWORD=guest \
+  SIAB_SHELL=/bin/bash \
+  SIAB_HOME=/home/$SIAB_USER \
+  SIAB_SUDO=false \
+  SIAB_SSL=true \
+  SIAB_SERVICE=/:LOGIN \
+  SIAB_PKGS=none \
+  SIAB_SCRIPT=none \
+  SIAB_COMM="/usr/local/bin/shellinaboxd -t -b"
+  
 #ADD reconfig.sh /scripts/reconfig.sh
 #RUN chmod +x /scripts/reconfig.sh 
 #RUN /bin/bash -c /scripts/reconfig.sh
