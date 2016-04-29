@@ -2,9 +2,9 @@ FROM foodresearch/bppc
 
 MAINTAINER Mark Fernandes <mark.fernandes@ifr.ac.uk>
 
-ADD reconfig.sh /scripts/reconfig.sh
-RUN chmod +x /scripts/reconfig.sh 
-RUN /bin/bash -c /scripts/reconfig.sh
+#ADD reconfig.sh /scripts/reconfig.sh
+#RUN chmod +x /scripts/reconfig.sh 
+#RUN /bin/bash -c /scripts/reconfig.sh
 ENV DOCS=$SIAB_HOME/docs DATA=$SIAB_HOME/data WORK=$SIAB_HOME/work 
 
 USER root
@@ -14,7 +14,7 @@ RUN apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git 
 RUN  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
 # RUN  /bin/bash -c mkdir $DOCS &&/bin/bash -c  mkdir $DATA && /bin/bash -c mkdir $WORK
-RUN  mkdir $DOCS && mkdir $DATA && mkdir $WORK
+#RUN  mkdir $DOCS && mkdir $DATA && mkdir $WORK
 
 # Paper & course notes(pdf) use less to read from command-line
 # RUN wget -O paper.pdf $DOCS http://f1000research.com/articles/1-2/v2/pdf
