@@ -5,9 +5,7 @@ ENV   SIAB_USER=ngsintro \
   SIAB_GROUP=guest \
   SIAB_PASSWORD=ngsintro \
   SIAB_HOME=/home/$SIAB_USER 
-#ADD reconfig.sh /scripts/reconfig.sh
-#RUN chmod +x /scripts/reconfig.sh 
-#RUN /bin/bash -c /scripts/reconfig.sh
+
 ENV DOCS=$SIAB_HOME/docs DATA=$SIAB_HOME/data WORK=$SIAB_HOME/work 
 
 USER root
@@ -17,6 +15,9 @@ RUN chmod +x /scripts/copy_course.sh
 RUN apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git gzip monit \
     picard-tools poppler-utils samtools sudo wget
 RUN  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
+#fix fastqc
+RUN mkdir /etc/fastqc/configuration
+ADD fasrqc/* /etc/fastqc/configuration/*
 
 RUN mkdir $DOCS && mkdir $DATA &&  mkdir $WORK && mkdir /coursehome
 #RUN  mkdir $DOCS && mkdir $DATA && mkdir $WORK
