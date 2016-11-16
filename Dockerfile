@@ -16,7 +16,7 @@ RUN apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git 
     picard-tools poppler-utils samtools sudo wget
 RUN  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 #fix fastqc
-RUN mkdir /etc/fastqc/configuration
+RUN mkdir /etc/fastqc && mkdir /etc/fastqc/configuration
 ADD fastqc/* /etc/fastqc/configuration/*
 
 RUN mkdir $DOCS && mkdir $DATA &&  mkdir $WORK && mkdir /coursehome
