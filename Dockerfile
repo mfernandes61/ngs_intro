@@ -11,6 +11,8 @@ ENV   SIAB_USER=ngsintro \
 ENV DOCS=$SIAB_HOME/docs DATA=$SIAB_HOME/data WORK=$SIAB_HOME/work 
 
 USER root
+ADD copy_course.sh /scripts/copy_course.sh
+RUN chmod +x /scripts/copy_course.sh 
 # need fastqc, samtools bwa bowtie picard-tools GATK jre wget git
 RUN apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git gzip monit \
     picard-tools poppler-utils samtools sudo wget
