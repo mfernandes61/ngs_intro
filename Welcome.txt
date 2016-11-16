@@ -10,3 +10,10 @@ Host (or on Windows PC & Macs running Docker Toolbox (Kitematic)).
 
 There are updated links to data files and we have provided an i86 
 version of the GATK (rather than the original ARM version).
+*** NB ****
+In Kitematic you will need to map the volume /coursehome to a directory 
+on your hard disk. Next stop then start the container (buttons towards 
+top RH corner) log in again and type '/scripts/copy_course.sh' to
+copy the tools, data and documents to the mapped directory on your
+local hard disk.
+***********
