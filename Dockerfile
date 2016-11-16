@@ -16,7 +16,7 @@ RUN apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git 
     picard-tools poppler-utils samtools sudo wget
 RUN  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
-RUN mkdir $DOCS && mkdir $DATA &&  mkdir $WORK
+RUN mkdir $DOCS && mkdir $DATA &&  mkdir $WORK && mkdir /coursehome
 #RUN  mkdir $DOCS && mkdir $DATA && mkdir $WORK
 
 # Paper & course notes(pdf) use less to read from command-line
@@ -49,6 +49,7 @@ RUN chmod +x /scripts/entrypoint.sh && chmod +x /scripts/launchsiab.sh
 
 EXPOSE 22
 EXPOSE 4200
+VOLUME /coursehome
 	
 #USER ngsintro
 
