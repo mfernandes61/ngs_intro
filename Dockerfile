@@ -16,8 +16,8 @@ RUN apt-get update && apt-get -y install bowtie bwa curl default-jre fastqc git 
     picard-tools poppler-utils samtools sudo wget
 RUN  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 #fix fastqc
-RUN mkdir /etc/fastqc && mkdir /etc/fastqc/configuration
-ADD fastqc/* /etc/fastqc/configuration/
+RUN mkdir /etc/fastqc && mkdir /etc/fastqc/Configuration
+ADD fastqc/* /etc/fastqc/Configuration/
 
 RUN mkdir $DOCS && mkdir $DATA &&  mkdir $WORK && mkdir /coursehome
 #RUN  mkdir $DOCS && mkdir $DATA && mkdir $WORK
@@ -44,9 +44,6 @@ RUN chmod +x /scripts/entrypoint.sh && chmod +x /scripts/launchsiab.sh
 # download read sets from f1000 cloud (S3) volume
 # RUN wget -O $DATA/Reads_1.1.fastq https://s3-eu-west-1.amazonaws.com/pstorage-f1000-a46686352/92198/Brca1Reads_1.1.fastq
 # RUN wget -O $DATA/Reads_1.2.fastq https://s3-eu-west-1.amazonaws.com/pstorage-f1000-a46686352/92203/Brca1Reads_1.2.fastq
-
-#RUN useradd --create-home --shell /bin/bash --user-group --uid 1000 --groups sudo $SIAB_USER && \
-#    echo `echo $SIAB_USER"\n"$SIAB_USER"\n" | passwd $SIAB_PASSWORD`
 
 #RUN chown -R $SIAB_USER:$SIAB_GROUP $SIAB_HOME
 
